@@ -8,7 +8,6 @@ buildscript {
         lambdaJavaCore = "1.2.1"
         lambdaJavaEvents = "3.3.0"
         shadowPluginVersion = "5.2.0"
-//        jacksonVersion = "2.9.8"
         gsonVersion = "2.10.1"
     }
 }
@@ -24,7 +23,6 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
-//    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}"
     implementation "com.google.code.gson:gson:${gsonVersion}"
     implementation "com.amazonaws:aws-lambda-java-core:${lambdaJavaCore}"
     implementation "com.amazonaws:aws-lambda-java-events:${lambdaJavaEvents}"

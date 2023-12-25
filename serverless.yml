@@ -1,0 +1,17 @@
+service: kotlin-lambda-service
+
+provider:
+  name: aws
+  runtime: java17
+  region: us-west-2 # Choose your preferred AWS region
+
+functions:
+  hello:
+    handler: com.example.Handler
+    events:
+      - http:
+          path: hello
+          method: get
+
+package:
+  artifact: build/libs/kotlin_serverless.jar

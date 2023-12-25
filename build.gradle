@@ -1,0 +1,45 @@
+import org.codehaus.groovy.runtime.GStringImpl
+
+buildscript {
+    ext {
+        sourceCompatibilityVersion = 17
+        jvmTargetVersion = "${sourceCompatibilityVersion}" as GStringImpl
+        kotlinVersion = "1.7.22"
+        lambdaJavaCore = "1.2.1"
+        lambdaJavaEvents = "3.3.0"
+        shadowPluginVersion = "5.2.0"
+//        jacksonVersion = "2.9.8"
+        gsonVersion = "2.10.1"
+    }
+}
+
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version "${kotlinVersion}"
+    id 'com.github.johnrengelman.shadow' version "${shadowPluginVersion}"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+//    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}"
+    implementation "com.google.code.gson:gson:${gsonVersion}"
+    implementation "com.amazonaws:aws-lambda-java-core:${lambdaJavaCore}"
+    implementation "com.amazonaws:aws-lambda-java-events:${lambdaJavaEvents}"
+
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+}
+
+sourceCompatibility = sourceCompatibilityVersion
+
+compileKotlin { kotlinOptions.jvmTarget = "${jvmTargetVersion}" }
+compileTestKotlin { kotlinOptions.jvmTarget = "${jvmTargetVersion}" }
+
+shadowJar {
+    archiveBaseName.set('kotlin_serverless')
+    archiveClassifier.set('')
+    archiveVersion.set('')
+}
